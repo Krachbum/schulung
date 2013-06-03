@@ -1,0 +1,7 @@
+# ignore all bin directories
+# matches "bin" in any subfolder
+bin/
+
+# ignore all target directoriestarget/
+# ignore all files ending with ~
+.metadata/
