@@ -4,7 +4,7 @@ public class Mitarbeiter {
   private String vorname;
   private String nachname;
 
-  // bittesehr
+  // bittesehrsupersehr
   public Mitarbeiter(int maNr, String titel, String vorname, String nachname) throws IllegalArgumentException {
     if (maNr <= 0) { throw new IllegalArgumentException("MaNr must be larger than 0 but was: " + maNr); }
     this.maNr = maNr;
