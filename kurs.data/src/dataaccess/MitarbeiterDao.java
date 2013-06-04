@@ -17,6 +17,8 @@ public class MitarbeiterDao {
   private static final String FILE = "S:\\Mitarbeiter.txt";
 
   public List<Object> getAllObjects() throws FileNotFoundException, IOException, ClassNotFoundException {
+    // bla
+    // blubb
     try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE))) {
       return (List<Object>) ois.readObject();
     }
