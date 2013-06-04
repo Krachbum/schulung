@@ -1,3 +1,4 @@
+
 public class Manager extends Mitarbeiter {
 
   // das ist ein blöder Kommentar
