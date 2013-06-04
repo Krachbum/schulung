@@ -5,3 +5,6 @@ bin/
 # ignore all target directoriestarget/
 # ignore all files ending with ~
 .metadata/
+
+# ignore all target/
+target/
