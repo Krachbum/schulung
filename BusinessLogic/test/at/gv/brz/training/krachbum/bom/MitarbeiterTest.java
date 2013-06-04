@@ -1,7 +1,10 @@
+package at.gv.brz.training.krachbum.bom;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import at.gv.brz.training.krachbum.bom.Mitarbeiter;
 
 
 public class MitarbeiterTest {

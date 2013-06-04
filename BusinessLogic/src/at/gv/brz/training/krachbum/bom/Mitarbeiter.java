@@ -1,3 +1,4 @@
+package at.gv.brz.training.krachbum.bom;
 public class Mitarbeiter {
   private final int maNr;
   private String titel;

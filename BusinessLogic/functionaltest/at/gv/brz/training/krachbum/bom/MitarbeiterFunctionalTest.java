@@ -1,4 +1,6 @@
+package at.gv.brz.training.krachbum.bom;
 import static org.junit.Assert.assertEquals;
+import at.gv.brz.training.krachbum.bom.Mitarbeiter;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
