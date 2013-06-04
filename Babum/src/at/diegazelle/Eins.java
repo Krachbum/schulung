@@ -8,6 +8,7 @@ public class Eins {
   public static void main(String[] args) {
     // TODO Auto-generated method stub
     System.out.println("Git is cool! und ich ändere es nochmal.");
+    System.out.println("commit test.");
   }
 
 }
