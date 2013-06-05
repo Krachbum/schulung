@@ -84,5 +84,4 @@ public class MitarbeiterFunctionalTest {
     List<Mitarbeiter> liste = mitarbeiterRepository.getAllMitarbeiter();
     mitarbeiter = liste.get(0);
   }
-
 }

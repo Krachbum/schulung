@@ -1,0 +1,81 @@
+package at.gv.brz.training.krachbum.bom;
+
+import java.util.List;
+
+public class Projekt {
+
+  private String name; // sollte eindeutig sein
+  private Manager projektleiter;
+  private int kontingent;
+
+  private List<Arbeitszeit> arbeitszeiten;
+
+  public Projekt(int fixesKontingent) {
+    kontingent = fixesKontingent;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Manager getProjektleiter() {
+    return projektleiter;
+  }
+
+  public void setProjektleiter(Manager projektleiter) {
+    this.projektleiter = projektleiter;
+  }
+
+  public List<Arbeitszeit> getArbeitszeiten() {
+    return arbeitszeiten;
+  }
+
+  public void setArbeitszeiten(List<Arbeitszeit> arbeitszeiten) {
+    this.arbeitszeiten = arbeitszeiten;
+  }
+
+  public int getKontingent() {
+    return kontingent;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + kontingent;
+    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    result = prime * result + ((projektleiter == null) ? 0 : projektleiter.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    Projekt other = (Projekt) obj;
+    if (kontingent != other.kontingent) return false;
+    if (name == null) {
+      if (other.name != null) return false;
+    } else if ( !name.equals(other.name)) return false;
+    if (projektleiter == null) {
+      if (other.projektleiter != null) return false;
+    } else if ( !projektleiter.equals(other.projektleiter)) return false;
+    return true;
+  }
+
+  public boolean istKontingentErschoepft() {
+    int summe = 0;
+    for (Arbeitszeit arbeitszeit : arbeitszeiten) {
+      summe += (int) ((arbeitszeit.getBis().getTime() - arbeitszeit.getVon().getTime()) / 3600000);
+
+    }
+
+    return (kontingent - summe) >= 0;
+
+  }
+}
