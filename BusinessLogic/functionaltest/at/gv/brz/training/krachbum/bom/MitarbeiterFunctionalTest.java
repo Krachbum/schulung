@@ -9,7 +9,7 @@ public class MitarbeiterFunctionalTest {
   Mitarbeiter mitarbeiter;
 
   @Given("^ich lege einen neuen Mitarbeiter mit Vorname \"([^\"]*)\" und Nachname \"([^\"]*)\" an$")
-  public void ich_lege_einen_neuen_Mitarbeiter_mit_Vorname_und_Nachname_an(String vorname, String nachname) throws Throwable {
+  public void ich_lege_einen_neuen_Mitarbeiter_mit_Vorname_und_Nachname_an(String vorname, String nachname) {
     mitarbeiter = new Mitarbeiter(1, "", vorname, nachname);
   }
 
@@ -20,8 +20,7 @@ public class MitarbeiterFunctionalTest {
   }
 
   @Given("^ich habe einen Mitarbeiter mit Vorname \"([^\"]*)\" und Nachname \"([^\"]*)\" und Mitarbeiternummer (\\d+)$")
-  public void ich_habe_einen_Mitarbeiter_mit_Vorname_und_Nachname_und_Mitarbeiternummer(String vorname, String nachname, int maNr)
-      throws Throwable {
+  public void ich_habe_einen_Mitarbeiter_mit_Vorname_und_Nachname_und_Mitarbeiternummer(String vorname, String nachname, int maNr) {
     mitarbeiter = new Mitarbeiter(maNr, "", vorname, nachname);
   }
 
