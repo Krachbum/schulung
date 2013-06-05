@@ -1,5 +1,10 @@
 package at.gv.brz.training.krachbum.bom;
-public class Mitarbeiter {
+
+import java.io.Serializable;
+
+public class Mitarbeiter implements Serializable {
+
+  private static final long serialVersionUID = 8239478517380940870L;
   private final int maNr;
   private String titel;
   private String vorname;
