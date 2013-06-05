@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MitarbeiterDao {
 
-  private static final String FILE = "S:\\Mitarbeiter.txt";
+  private static final String FILE = "C:\\tmp\\Mitarbeiter.txt";
 
   public List<Object> getAllObjects() throws FileNotFoundException, IOException, ClassNotFoundException {
     // bla
