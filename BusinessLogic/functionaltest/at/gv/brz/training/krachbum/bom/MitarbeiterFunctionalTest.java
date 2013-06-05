@@ -66,15 +66,21 @@ public class MitarbeiterFunctionalTest {
     assertEquals(Manager.class, this.mitarbeiter.getClass());
   }
 
-  @When("^ich den Manager speichere$")
-  public void ich_den_Manager_speichere() throws Throwable {
+  /**
+   * @param managerOrMitarbeiter
+   */
+  @When("^ich den (Manager|Mitarbeiter) speichere$")
+  public void ich_den_Manager_speichere(String managerOrMitarbeiter) throws Throwable {
     List<Mitarbeiter> liste = new ArrayList<>();
     liste.add(mitarbeiter);
     mitarbeiterRepository.saveAllMitarbeiter(liste);
   }
 
-  @When("^den Manager wieder lade$")
-  public void den_Manager_wieder_lade() throws Throwable {
+  /**
+   * @param managerOrMitarbeiter
+   */
+  @When("^den (Manager|Mitarbeiter) wieder lade$")
+  public void den_Manager_wieder_lade(String managerOrMitarbeiter) throws Throwable {
     List<Mitarbeiter> liste = mitarbeiterRepository.getAllMitarbeiter();
     mitarbeiter = liste.get(0);
   }

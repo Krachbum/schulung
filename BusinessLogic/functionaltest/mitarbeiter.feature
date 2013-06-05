@@ -24,3 +24,10 @@ Feature: Mitarbeiter und Manager anlegen.
     And ich dem Manager den neuen Nachnamen "Müller" gebe
     And den Manager wieder lade
     Then sollte der Manager den Nachnamen "Meier" haben
+    
+   Scenario: Mitarbeiter speichern
+    Given ich habe einen Mitarbeiter mit Vorname "Franz" und Nachname "Meier" und Mitarbeiternummer 2
+    When ich den Mitarbeiter speichere
+    And ich dem Mitarbeiter den neuen Nachnamen "Müller" gebe
+    And den Mitarbeiter wieder lade
+    Then sollte der Mitarbeiter den Nachnamen "Meier" haben
