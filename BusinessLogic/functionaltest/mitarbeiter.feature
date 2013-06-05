@@ -10,3 +10,10 @@ Feature: Mitarbeiter und Manager anlegen.
     When ich dem Mitarbeiter den neuen Nachnamen "Meier" gebe
     Then sollte der Mitarbeiter den Nachnamen "Meier" haben
     And die Mitarbeiternummer soll auf 1 bleiben
+
+  Scenario: Manager umbenennen
+    Given ich habe einen Manager mit Vorname "Sebastian" und Nachname "Meier" und Mitarbeiternummer 2
+    When ich dem Manager den neuen Nachnamen "Müller" gebe
+    Then sollte der Manager den Nachnamen "Müller" haben
+    And die Mitarbeiternummer soll auf 2 bleiben
+    And ein Manager bleiben
