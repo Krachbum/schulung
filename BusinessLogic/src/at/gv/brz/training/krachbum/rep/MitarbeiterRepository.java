@@ -17,7 +17,7 @@ public class MitarbeiterRepository {
 
     List<Mitarbeiter> maListe = new ArrayList<>();
 
-    List<Object> res = mitarbeiterDAO.getAllObjects();
+    List<Object> res = mitarbeiterDAO.getAllObjects().get("mitarbeiter");
 
     for (Object object : res) {
       maListe.add((Mitarbeiter) object);
@@ -36,6 +36,6 @@ public class MitarbeiterRepository {
       maListe.add(mitarbeiter);
     }
 
-    mitarbeiterDAO.saveAllObjects(maListe);
+    mitarbeiterDAO.saveAllObjects(null, maListe);
   }
 }

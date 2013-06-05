@@ -1,12 +1,18 @@
 package at.gv.brz.training.krachbum.bom;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import at.gv.brz.training.krachbum.rep.MitarbeiterRepository;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class MitarbeiterFunctionalTest {
   Mitarbeiter mitarbeiter;
+  MitarbeiterRepository mitarbeiterRepository = new MitarbeiterRepository();
 
   @Given("^ich lege einen neuen Mitarbeiter mit Vorname \"([^\"]*)\" und Nachname \"([^\"]*)\" an$")
   public void ich_lege_einen_neuen_Mitarbeiter_mit_Vorname_und_Nachname_an(String vorname, String nachname) {
@@ -59,4 +65,24 @@ public class MitarbeiterFunctionalTest {
   public void ein_Manager_bleiben() {
     assertEquals(Manager.class, this.mitarbeiter.getClass());
   }
+
+  /**
+   * @param managerOrMitarbeiter
+   */
+  @When("^ich den (Manager|Mitarbeiter) speichere$")
+  public void ich_den_Manager_speichere(String managerOrMitarbeiter) throws Throwable {
+    List<Mitarbeiter> liste = new ArrayList<>();
+    liste.add(mitarbeiter);
+    mitarbeiterRepository.saveAllMitarbeiter(liste);
+  }
+
+  /**
+   * @param managerOrMitarbeiter
+   */
+  @When("^den (Manager|Mitarbeiter) wieder lade$")
+  public void den_Manager_wieder_lade(String managerOrMitarbeiter) throws Throwable {
+    List<Mitarbeiter> liste = mitarbeiterRepository.getAllMitarbeiter();
+    mitarbeiter = liste.get(0);
+  }
+
 }
