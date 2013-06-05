@@ -1,7 +1,6 @@
 package at.gv.brz.training.krachbum.bom;
+
 import static org.junit.Assert.assertEquals;
-import at.gv.brz.training.krachbum.bom.Mitarbeiter;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -10,7 +9,7 @@ public class MitarbeiterFunctionalTest {
   Mitarbeiter mitarbeiter;
 
   @Given("^ich lege einen neuen Mitarbeiter mit Vorname \"([^\"]*)\" und Nachname \"([^\"]*)\" an$")
-  public void ich_lege_einen_neuen_Mitarbeiter_mit_Vorname_und_Nachname_an(String vorname, String nachname) throws Throwable {
+  public void ich_lege_einen_neuen_Mitarbeiter_mit_Vorname_und_Nachname_an(String vorname, String nachname) {
     mitarbeiter = new Mitarbeiter(1, "", vorname, nachname);
   }
 
@@ -20,43 +19,44 @@ public class MitarbeiterFunctionalTest {
     assertEquals(nachname, mitarbeiter.getNachname());
   }
 
-  /**
-   * @param arg1
-   * @param arg1
-   * @param arg2
-   * @param arg3
-   */
   @Given("^ich habe einen Mitarbeiter mit Vorname \"([^\"]*)\" und Nachname \"([^\"]*)\" und Mitarbeiternummer (\\d+)$")
-  public void ich_habe_einen_Mitarbeiter_mit_Vorname_und_Nachname_und_Mitarbeiternummer(String arg1, String arg2, int arg3)
-      throws Throwable {
-    // Express the Regexp above with the code you wish you had
-    throw new PendingException();
+  public void ich_habe_einen_Mitarbeiter_mit_Vorname_und_Nachname_und_Mitarbeiternummer(String vorname, String nachname, int maNr) {
+    mitarbeiter = new Mitarbeiter(maNr, "", vorname, nachname);
   }
 
-  /**
-   * @param arg1
-   */
   @When("^ich dem Mitarbeiter den neuen Nachnamen \"([^\"]*)\" gebe$")
-  public void ich_dem_Mitarbeiter_den_neuen_Nachnamen_gebe(String arg1) throws Throwable {
-    // Express the Regexp above with the code you wish you had
-    throw new PendingException();
+  public void ich_dem_Mitarbeiter_den_neuen_Nachnamen_gebe(String nachname) {
+    mitarbeiter.setNachname(nachname);
+    assertEquals(nachname, mitarbeiter.getNachname());
   }
 
-  /**
-   * @param arg1
-   */
   @Then("^sollte der Mitarbeiter den Nachnamen \"([^\"]*)\" haben$")
-  public void sollte_der_Mitarbeiter_den_Nachnamen_haben(String arg1) throws Throwable {
-    // Express the Regexp above with the code you wish you had
-    throw new PendingException();
+  public void sollte_der_Mitarbeiter_den_Nachnamen_haben(String nachname) {
+    assertEquals(nachname, this.mitarbeiter.getNachname());
   }
 
-  /**
-   * @param arg1
-   */
   @Then("^die Mitarbeiternummer soll auf (\\d+) bleiben$")
-  public void die_Mitarbeiternummer_soll_auf_bleiben(int arg1) throws Throwable {
-    // Express the Regexp above with the code you wish you had
-    throw new PendingException();
+  public void die_Mitarbeiternummer_soll_auf_bleiben(int maNr) {
+    assertEquals(maNr, mitarbeiter.getMaNr());
+  }
+
+  @Given("^ich habe einen Manager mit Vorname \"([^\"]*)\" und Nachname \"([^\"]*)\" und Mitarbeiternummer (\\d+)$")
+  public void ich_habe_einen_Manager_mit_Vorname_und_Nachname_und_Mitarbeiternummer(String vorname, String nachname, int maNr) {
+    mitarbeiter = new Manager(maNr, "", vorname, nachname);
+  }
+
+  @When("^ich dem Manager den neuen Nachnamen \"([^\"]*)\" gebe$")
+  public void ich_dem_Manager_den_neuen_Nachnamen_gebe(String nachname) {
+    mitarbeiter.setNachname(nachname);
+  }
+
+  @Then("^sollte der Manager den Nachnamen \"([^\"]*)\" haben$")
+  public void sollte_der_Manager_den_Nachnamen_haben(String nachname) {
+    assertEquals(nachname, mitarbeiter.getNachname());
+  }
+
+  @Then("^ein Manager bleiben$")
+  public void ein_Manager_bleiben() {
+    assertEquals(Manager.class, this.mitarbeiter.getClass());
   }
 }
