@@ -32,9 +32,9 @@ public class MitarbeiterDaoTest {
   public void testSaveGetAllObjects() throws IOException, ClassNotFoundException {
     List<Serializable> liste = getTestList(44);
 
-    dao.saveAllObjects(liste);
+    dao.saveAllObjects(null, liste);
 
-    List<Object> res = dao.getAllObjects();
+    List<Object> res = dao.getAllObjects().get("mitarbeiter");
     assertEquals(liste, res);
 
   }
@@ -43,7 +43,7 @@ public class MitarbeiterDaoTest {
   public void testSaveAllObjectsEmpty() throws IOException {
     List<Serializable> liste = getTestList(0);
 
-    dao.saveAllObjects(liste);
+    dao.saveAllObjects(null, liste);
 
   }
 
@@ -51,7 +51,7 @@ public class MitarbeiterDaoTest {
   public void testSaveAllObjectsNull() throws IOException {
     List<Serializable> liste = null;
 
-    dao.saveAllObjects(liste);
+    dao.saveAllObjects(null, liste);
 
   }
 
