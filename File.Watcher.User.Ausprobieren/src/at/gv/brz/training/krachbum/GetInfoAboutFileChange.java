@@ -17,7 +17,7 @@ public class GetInfoAboutFileChange implements FileChangeListener {
    * @throws InterruptedException
    * @throws IOException
    */
-  public static void main(String[] args) throws InterruptedException, IOException {
+  public static void main(String[] args) throws InterruptedException {
     GetInfoAboutFileChange gIAFC = new GetInfoAboutFileChange();
 
     WatchService ws = new WatchService();
