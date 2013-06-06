@@ -10,7 +10,7 @@ public class Projekt implements Serializable {
 
   private String name;
   private Manager projektleiter;
-  private int kontingent;
+  private final int kontingent;
 
   private List<Arbeitszeit> arbeitszeiten = new ArrayList<>();
 

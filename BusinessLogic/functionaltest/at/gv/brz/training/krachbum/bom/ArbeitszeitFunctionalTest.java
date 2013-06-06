@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import at.gv.brz.training.krachbum.rep.ObjectRepository;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -69,4 +70,16 @@ public class ArbeitszeitFunctionalTest {
     List<Object> liste = mitarbeiterRepository.getAllObjects();
     manager = (Manager) liste.get(0);
   }
+
+  @Given("^ich habe ein Projekt mit (\\d+) Stunden Kontingent$")
+  public void ich_habe_ein_Projekt_mit_Stunden_Kontingent(int arg1) {
+    projekt = new Projekt(arg1, "Projekt", manager);
+  }
+
+  @Then("^kann ich dem Projekt die Arbeitszeit nicht zuordnen$")
+  public void kann_ich_dem_Projekt_die_Arbeitszeit_nicht_zuordnen() throws Throwable {
+    // Express the Regexp above with the code you wish you had
+    throw new PendingException();
+  }
+
 }

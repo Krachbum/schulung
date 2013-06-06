@@ -20,3 +20,8 @@ Feature: Arbeitszeit anlegen.
     And ich das Projekt neu lade
     Then sollte das Projekt die Arbeitszeit haben
     Then sollte die Arbeitszeit von "01.01.2013 09:00" und bis "01.01.2013 10:00"  als Zeiten haben.
+
+  Scenario: Arbeitszeit zu einem überbuchten Projekt zuordnen
+    Given ich lege eine neue Arbeitszeit mit von "01.01.2013 09:00" und bis "01.01.2013 19:00" an
+    And ich habe ein Projekt mit 8 Stunden Kontingent
+    Then kann ich dem Projekt die Arbeitszeit nicht zuordnen
