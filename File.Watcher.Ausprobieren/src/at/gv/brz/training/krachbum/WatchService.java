@@ -14,18 +14,18 @@ public class WatchService {
     lListeners.add(extFCL);
   }
 
-  public void prozessEventsInBackground() {
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          new WatchDir().processEvents(lListeners);
-        } catch (IOException e) {
-          // TODO Auto-generated catch block
-          assert false : "IOException thrown";
-        }
-
-      }
-    }).start();
+  public void prozessEventsInBackground() throws IOException {
+    // new Thread(new Runnable() {
+    // @Override
+    // public void run() {
+    // try {
+    new WatchDir().processEvents(lListeners);
+    // } catch (IOException e) {
+    // // TODO Auto-generated catch block
+    // assert false : "IOException thrown";
+    // }
+    //
+    // }
+    // }).start();
   }
 }

@@ -1,5 +1,7 @@
 package at.gv.brz.training.krachbum;
 
+import java.io.IOException;
+
 import at.gv.brz.training.krachbum.listener.FileChangeListener;
 
 public class GetInfoAboutFileChange implements FileChangeListener {
@@ -13,8 +15,9 @@ public class GetInfoAboutFileChange implements FileChangeListener {
   /**
    * @param args
    * @throws InterruptedException
+   * @throws IOException
    */
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) throws InterruptedException, IOException {
     GetInfoAboutFileChange gIAFC = new GetInfoAboutFileChange();
 
     WatchService ws = new WatchService();
