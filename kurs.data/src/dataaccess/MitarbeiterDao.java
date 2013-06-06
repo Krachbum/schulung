@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Spch05
@@ -18,13 +16,13 @@ public class MitarbeiterDao {
 
   private static final String FILE = "C:\\tmp\\Mitarbeiter.txt";
 
-  public Map<String, List<Object>> getAllObjects() throws FileNotFoundException, IOException, ClassNotFoundException {
+  public DataTransferObject getAllObjects() throws FileNotFoundException, IOException, ClassNotFoundException {
 
     try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE))) {
-      Map<String, List<Object>> map = new HashMap<>();
-      map.put("projekte", (List<Object>) ois.readObject());
-      map.put("mitarbeiter", (List<Object>) ois.readObject());
-      return map;
+      DataTransferObject dataTransferObject = new DataTransferObject();
+      dataTransferObject.setProjekteListe((List<Object>) ois.readObject());
+      dataTransferObject.setMitarbeiterListe((List<Object>) ois.readObject());
+      return dataTransferObject;
     }
   }
 

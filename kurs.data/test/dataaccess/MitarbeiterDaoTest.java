@@ -34,7 +34,7 @@ public class MitarbeiterDaoTest {
 
     dao.saveAllObjects(null, liste);
 
-    List<Object> res = dao.getAllObjects().get("mitarbeiter");
+    List<Object> res = dao.getAllObjects().getMitarbeiterListe();
     assertEquals(liste, res);
 
   }

@@ -17,7 +17,7 @@ public class MitarbeiterRepository {
 
     List<Mitarbeiter> maListe = new ArrayList<>();
 
-    List<Object> res = mitarbeiterDAO.getAllObjects().get("mitarbeiter");
+    List<Object> res = mitarbeiterDAO.getAllObjects().getMitarbeiterListe();
 
     for (Object object : res) {
       maListe.add((Mitarbeiter) object);
