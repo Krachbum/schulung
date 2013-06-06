@@ -22,6 +22,7 @@ package at.gv.brz.training.krachbum;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
@@ -32,6 +33,9 @@ import java.nio.file.Paths;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.List;
+
+import at.gv.brz.training.krachbum.listener.FileChangeListener;
 
 /**
  * Example to watch a directory (or tree) for changes to files.
@@ -40,7 +44,6 @@ import java.nio.file.WatchService;
 public class WatchDir {
 
   private final WatchService watcher;
-
   private final Path dir;
 
   /**
@@ -48,14 +51,14 @@ public class WatchDir {
    */
   WatchDir() throws IOException {
     this.watcher = FileSystems.getDefault().newWatchService();
-    this.dir = Paths.get("C:/tmp/watchfile");
-    this.dir.register(watcher, ENTRY_MODIFY);
+    this.dir = Paths.get("C:/tmp/test");
+    this.dir.register(watcher, ENTRY_MODIFY, ENTRY_DELETE);
   }
 
   /**
    * Process all events for keys queued to the watcher
    */
-  void processEvents() {
+  void processEvents(List<FileChangeListener> lListeners) {
     for (;;) {
 
       // wait for key to be signalled
@@ -63,6 +66,7 @@ public class WatchDir {
       try {
         key = watcher.take();
       } catch (InterruptedException x) {
+        System.out.println("Interrupted Exception");
         return;
       }
 
@@ -84,16 +88,16 @@ public class WatchDir {
         Path child = this.dir.resolve(name);
 
         // print out event
-        if (child.toString().equals("C:\\tmp\\watchfile\\tesi.txt")) {
+        if (child.toString().equals("C:\\tmp\\test\\testi.txt")) {
+          for (FileChangeListener l : lListeners) {
+            l.fileChangedEvent();
+          }
           System.out.format("%s: %s\n", event.kind().name(), child);
         }
 
       }
-
+      key.reset();
     }
   }
 
-  public static void main(String[] args) throws IOException {
-    new WatchDir().processEvents();
-  }
 }
