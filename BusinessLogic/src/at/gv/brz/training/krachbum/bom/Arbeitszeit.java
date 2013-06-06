@@ -24,6 +24,8 @@ public class Arbeitszeit {
   }
 
   public Arbeitszeit(Date von, Date bis) {
+    if (von == null || bis == null) { throw new IllegalArgumentException(); }
+    if (von.after(bis)) { throw new IllegalArgumentException("Von Datum liegt nach dem Bis Datum"); }
     this.von = von;
     this.bis = bis;
 

@@ -12,7 +12,7 @@ public class ArbeitszeitTest {
 
   private Arbeitszeit testInstance;
 
-  private SimpleDateFormat df = new SimpleDateFormat("dd.mm.yyyy hh:MM");
+  private SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
   private Date von;
   private Date bis;
@@ -43,6 +43,26 @@ public class ArbeitszeitTest {
     assertEquals(von, testInstance.getVon());
     assertEquals(bis, testInstance.getBis());
     assertEquals(Arbeitszeit.class, testInstance.getClass());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testArbeitszeitvonNull() {
+    testInstance = new Arbeitszeit(null, bis);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testArbeitszeitbisNull() {
+    testInstance = new Arbeitszeit(von, null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testArbeitszeitvonbisNull() {
+    testInstance = new Arbeitszeit(null, null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testArbeitszeitvonNachBis() {
+    testInstance = new Arbeitszeit(bis, von);
   }
 
 }
