@@ -15,11 +15,11 @@ import org.junit.Test;
  */
 public class MitarbeiterDaoTest {
 
-  private MitarbeiterDao dao;
+  private ObjectDao dao;
 
   @Before
   public void setUp() {
-    dao = new MitarbeiterDao();
+    dao = new ObjectDao();
   }
 
   /**
@@ -32,56 +32,26 @@ public class MitarbeiterDaoTest {
   public void testSaveGetAllObjects() throws IOException, ClassNotFoundException {
     List<Serializable> liste = getTestList(44);
 
-    dao.saveAllObjects(null, liste);
+    dao.saveAllObjects(liste);
 
-    List<Object> res = dao.getAllObjects().getMitarbeiterListe();
-    assertEquals(liste, res);
-
-  }
-
-  @Test
-  public void testSaveGetAllObjectsWithBothLists() throws IOException, ClassNotFoundException {
-    List<Serializable> liste = getTestList(44);
-    List<Serializable> liste2 = getTestList(5);
-    dao.saveAllObjects(liste, liste2);
-
-    List<Object> res = dao.getAllObjects().getMitarbeiterListe();
-    assertEquals(liste2, res);
-
-    res = dao.getAllObjects().getProjekteListe();
+    List<Object> res = dao.getAllObjects();
     assertEquals(liste, res);
 
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testSaveAllObjectsEmptyMitarbeiter() throws IOException {
+  public void testSaveAllObjectsEmpty() throws IOException {
     List<Serializable> liste = getTestList(0);
 
-    dao.saveAllObjects(null, liste);
+    dao.saveAllObjects(liste);
 
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testSaveAllObjectsNullMitarbeiter() throws IOException {
+  public void testSaveAllObjectsNull() throws IOException {
     List<Serializable> liste = null;
 
-    dao.saveAllObjects(null, liste);
-
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testSaveAllObjectsEmptyProjekte() throws IOException {
-    List<Serializable> liste = getTestList(0);
-
-    dao.saveAllObjects(liste, null);
-
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testSaveAllObjectsNullProjekte() throws IOException {
-    List<Serializable> liste = null;
-
-    dao.saveAllObjects(liste, null);
+    dao.saveAllObjects(liste);
 
   }
 
