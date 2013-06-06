@@ -2,6 +2,8 @@ package at.gv.brz.training.krachbum.bom;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 import at.gv.brz.training.krachbum.rep.ObjectRepository;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,7 +21,7 @@ public class ArbeitszeitFunctionalTest {
   Arbeitszeit arbeitszeit;
   ObjectRepository mitarbeiterRepository = new ObjectRepository();
   private Manager manager = new Manager(3, "BSc", "Maxi", "Mustermann");
-  Projekt projekt = new Projekt(1, "Projekt", manager);
+  Projekt projekt = new Projekt(40, "Projekt", manager);
   SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
   @Given("^ich lege eine neue Arbeitszeit mit von \"([^\"]*)\" und bis \"([^\"]*)\" an$")
@@ -40,7 +41,7 @@ public class ArbeitszeitFunctionalTest {
 
   @When("^ich ein Projekt habe$")
   public void ich_ein_Projekt_habe() {
-    projekt = new Projekt(0, null, null);
+    projekt = new Projekt(40, null, null);
   }
 
   @When("^ich die Arbeitszeit einem Projekt zuordne$")
@@ -77,9 +78,14 @@ public class ArbeitszeitFunctionalTest {
   }
 
   @Then("^kann ich dem Projekt die Arbeitszeit nicht zuordnen$")
-  public void kann_ich_dem_Projekt_die_Arbeitszeit_nicht_zuordnen() throws Throwable {
-    // Express the Regexp above with the code you wish you had
-    throw new PendingException();
+  public void kann_ich_dem_Projekt_die_Arbeitszeit_nicht_zuordnen() {
+    try {
+      projekt.addArbeitszeit(arbeitszeit);
+      fail("No exception thrown");
+    } catch (IllegalStateException e) {
+      assertTrue(projekt.getArbeitszeiten().isEmpty());
+    } catch (Exception e) {
+      fail("Wrong exception thrown");
+    }
   }
-
 }

@@ -42,6 +42,7 @@ public class Projekt implements Serializable {
   }
 
   public void addArbeitszeit(Arbeitszeit arbeitszeit) {
+    if (istKontingentErschoepft(arbeitszeit)) { throw new IllegalStateException("Kontingent ist erschoepft!"); }
     this.arbeitszeiten.add(arbeitszeit);
   }
 
@@ -75,13 +76,19 @@ public class Projekt implements Serializable {
     return true;
   }
 
-  public boolean istKontingentNichtErschoepft() {
+  public boolean istKontingentErschoepft(Arbeitszeit futureArbeitszeit) {
     int summe = 0;
-    for (Arbeitszeit arbeitszeit : this.arbeitszeiten) {
-      summe += (int) ((arbeitszeit.getBis().getTime() - arbeitszeit.getVon().getTime()) / 3600000);
+    if (this.arbeitszeiten.isEmpty()) {
+      summe += (int) ((futureArbeitszeit.getBis().getTime() - futureArbeitszeit.getVon().getTime()) / 3600000);
+    } else {
+
+      for (Arbeitszeit arbeitszeit : this.arbeitszeiten) {
+        summe += (int) ((arbeitszeit.getBis().getTime() - arbeitszeit.getVon().getTime()) / 3600000) +
+          (int) ((futureArbeitszeit.getBis().getTime() - futureArbeitszeit.getVon().getTime()) / 3600000);
+      }
     }
 
-    return (this.kontingent - summe) >= 0;
+    return !((this.kontingent - summe) >= 0);
 
   }
 }

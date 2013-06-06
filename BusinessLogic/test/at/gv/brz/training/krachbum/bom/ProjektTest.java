@@ -37,7 +37,6 @@ public class ProjektTest {
 
     List<Arbeitszeit> liste = new ArrayList<>();
     liste.add(this.testArbeitszeit);
-    this.testInstance.addArbeitszeit(this.testArbeitszeit);
 
     this.testInstanceBigger = new Projekt(40, PROJEKTNAME, testManager);
     this.testInstanceBigger.addArbeitszeit(this.testArbeitszeit);
@@ -45,10 +44,10 @@ public class ProjektTest {
 
   @Test
   public void testConstructor() {
-    assertEquals(1, testInstance.getKontingent());
-    assertEquals(PROJEKTNAME, testInstance.getName());
-    assertEquals(von, testInstance.getArbeitszeiten().get(0).getVon());
-    assertEquals(Projekt.class, testInstance.getClass());
+    assertEquals(40, testInstanceBigger.getKontingent());
+    assertEquals(PROJEKTNAME, testInstanceBigger.getName());
+    assertEquals(von, testInstanceBigger.getArbeitszeiten().get(0).getVon());
+    assertEquals(Projekt.class, testInstanceBigger.getClass());
   }
 
   @Test
@@ -79,8 +78,8 @@ public class ProjektTest {
 
   @Test
   public void testSetAndGetArbeitszeiten() {
-    assertEquals(this.von, testInstance.getArbeitszeiten().get(0).getVon());
-    assertEquals(this.bis, testInstance.getArbeitszeiten().get(0).getBis());
+    assertEquals(this.von, testInstanceBigger.getArbeitszeiten().get(0).getVon());
+    assertEquals(this.bis, testInstanceBigger.getArbeitszeiten().get(0).getBis());
   }
 
   @Test
@@ -88,11 +87,12 @@ public class ProjektTest {
     assertEquals(1, testInstance.getKontingent());
   }
 
-  @Test
+  @Test(expected = IllegalStateException.class)
   public void testIstKontingentErschoepft() {
+    assertTrue(this.testInstance.istKontingentErschoepft(this.testArbeitszeit));
+    assertFalse(this.testInstanceBigger.istKontingentErschoepft(this.testArbeitszeit));
 
-    assertFalse(this.testInstance.istKontingentNichtErschoepft());
-    assertTrue(this.testInstanceBigger.istKontingentNichtErschoepft());
+    testInstance.addArbeitszeit(new Arbeitszeit(von, bis));
 
   }
 }
