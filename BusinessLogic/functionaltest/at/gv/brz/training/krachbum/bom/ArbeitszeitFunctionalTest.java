@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,12 +35,14 @@ public class ArbeitszeitFunctionalTest {
 
   @When("^ich ein Projekt habe$")
   public void ich_ein_Projekt_habe() {
-    projekt = new Projekt();
+    projekt = new Projekt(0, null, null);
   }
 
   @When("^ich die Arbeitszeit einem Projekt zuordne$")
   public void ich_die_Arbeitszeit_einem_Projekt_zuordne() {
-    projekt.setArbeitszeit(arbeitszeit);
+    List<Arbeitszeit> arbeitszeiten = new ArrayList<>();
+    arbeitszeiten.add(arbeitszeit);
+    projekt.setArbeitszeiten(arbeitszeiten);
   }
 
   @Then("^sollte das Projekt die Arbeitszeit haben$")
