@@ -21,7 +21,7 @@ public class DataTransferObjectTest {
   @Test
   public void testGetSetProjekteListe() {
     testInstance.setProjekteListe(liste);
-    assertEquals(liste, testInstance.getProjekteListe());
+    assertEquals(liste, testInstance.getProjektListe());
   }
 
   @Test

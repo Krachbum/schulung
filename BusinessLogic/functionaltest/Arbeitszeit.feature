@@ -16,7 +16,7 @@ Feature: Arbeitszeit anlegen.
     Given ich lege eine neue Arbeitszeit mit von "01.01.2013 09:00" und bis "01.01.2013 10:00" an
     When ich ein Projekt habe
     And ich die Arbeitszeit einem Projekt zuordne
-    And ich die Projekt speichere
+    And ich das Projekt speichere
     And ich das Projekt neu lade
     Then sollte das Projekt die Arbeitszeit haben
     Then sollte die Arbeitszeit von "01.01.2013 09:00" und bis "01.01.2013 10:00"  als Zeiten haben.

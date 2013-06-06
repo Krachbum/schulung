@@ -1,9 +1,12 @@
 package at.gv.brz.training.krachbum.bom;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Projekt {
+public class Projekt implements Serializable {
+
+  private static final long serialVersionUID = -1633408786859368297L;
 
   private String name;
   private Manager projektleiter;

@@ -1,9 +1,11 @@
 package at.gv.brz.training.krachbum.bom;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Arbeitszeit {
+public class Arbeitszeit implements Serializable {
 
+  private static final long serialVersionUID = 536285737330498636L;
   private Date von;
   private Date bis;
 

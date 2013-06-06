@@ -6,7 +6,7 @@ public class DataTransferObject {
   private List<Object> projekteListe;
   private List<Object> mitarbeiterListe;
 
-  public List<Object> getProjekteListe() {
+  public List<Object> getProjektListe() {
     return projekteListe;
   }
 

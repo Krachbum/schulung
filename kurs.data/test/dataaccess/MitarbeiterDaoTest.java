@@ -15,11 +15,11 @@ import org.junit.Test;
  */
 public class MitarbeiterDaoTest {
 
-  private MitarbeiterDao dao;
+  private ObjectDao dao;
 
   @Before
   public void setUp() {
-    dao = new MitarbeiterDao();
+    dao = new ObjectDao();
   }
 
   /**
@@ -32,9 +32,9 @@ public class MitarbeiterDaoTest {
   public void testSaveGetAllObjects() throws IOException, ClassNotFoundException {
     List<Serializable> liste = getTestList(44);
 
-    dao.saveAllObjects(null, liste);
+    dao.saveAllObjects(liste);
 
-    List<Object> res = dao.getAllObjects().getMitarbeiterListe();
+    List<Object> res = dao.getAllObjects();
     assertEquals(liste, res);
 
   }
@@ -43,7 +43,7 @@ public class MitarbeiterDaoTest {
   public void testSaveAllObjectsEmpty() throws IOException {
     List<Serializable> liste = getTestList(0);
 
-    dao.saveAllObjects(null, liste);
+    dao.saveAllObjects(liste);
 
   }
 
@@ -51,7 +51,7 @@ public class MitarbeiterDaoTest {
   public void testSaveAllObjectsNull() throws IOException {
     List<Serializable> liste = null;
 
-    dao.saveAllObjects(null, liste);
+    dao.saveAllObjects(liste);
 
   }
 
