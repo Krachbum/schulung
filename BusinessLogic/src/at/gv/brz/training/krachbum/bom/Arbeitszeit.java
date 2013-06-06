@@ -35,8 +35,8 @@ public class Arbeitszeit {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((bis == null) ? 0 : bis.hashCode());
-    result = prime * result + ((von == null) ? 0 : von.hashCode());
+    result = prime * result + bis.hashCode();
+    result = prime * result + von.hashCode();
     return result;
   }
 
@@ -46,12 +46,8 @@ public class Arbeitszeit {
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
     Arbeitszeit other = (Arbeitszeit) obj;
-    if (bis == null) {
-      if (other.bis != null) return false;
-    } else if ( !bis.equals(other.bis)) return false;
-    if (von == null) {
-      if (other.von != null) return false;
-    } else if ( !von.equals(other.von)) return false;
+    if ( !bis.equals(other.bis)) return false;
+    if ( !von.equals(other.von)) return false;
     return true;
   }
 

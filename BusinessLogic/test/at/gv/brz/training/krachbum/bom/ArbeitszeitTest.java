@@ -85,4 +85,9 @@ public class ArbeitszeitTest {
   public void testEqualsUngleichesVon() {
     assertFalse(new Arbeitszeit(new Date(von.getTime() + 1), bis).equals(new Arbeitszeit(von, bis)));
   }
+
+  @Test
+  public void testHash() {
+    assertEquals(new Arbeitszeit(von, bis).hashCode(), testInstance.hashCode());
+  }
 }
