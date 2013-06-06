@@ -4,21 +4,24 @@ import java.util.List;
 
 public class Projekt {
 
-  private String name; // sollte eindeutig sein
+  private String name;
   private Manager projektleiter;
   private int kontingent;
 
   private List<Arbeitszeit> arbeitszeiten;
 
-  public Projekt(int fixesKontingent) {
-    kontingent = fixesKontingent;
+  public Projekt(int fixesKontingent, String name, Manager manager) {
+    this.kontingent = fixesKontingent;
+    this.name = name;
+    this.projektleiter = manager;
   }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(String name) throws IllegalArgumentException {
+    if (name == null || name.isEmpty()) { throw new IllegalArgumentException(); }
     this.name = name;
   }
 
@@ -68,14 +71,13 @@ public class Projekt {
     return true;
   }
 
-  public boolean istKontingentErschoepft() {
+  public boolean istKontingentNichtErschoepft() {
     int summe = 0;
-    for (Arbeitszeit arbeitszeit : arbeitszeiten) {
+    for (Arbeitszeit arbeitszeit : this.arbeitszeiten) {
       summe += (int) ((arbeitszeit.getBis().getTime() - arbeitszeit.getVon().getTime()) / 3600000);
-
     }
 
-    return (kontingent - summe) >= 0;
+    return (this.kontingent - summe) >= 0;
 
   }
 }
