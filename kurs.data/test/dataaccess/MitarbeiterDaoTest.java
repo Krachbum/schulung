@@ -39,8 +39,22 @@ public class MitarbeiterDaoTest {
 
   }
 
+  @Test
+  public void testSaveGetAllObjectsWithBothLists() throws IOException, ClassNotFoundException {
+    List<Serializable> liste = getTestList(44);
+    List<Serializable> liste2 = getTestList(5);
+    dao.saveAllObjects(liste, liste2);
+
+    List<Object> res = dao.getAllObjects().getMitarbeiterListe();
+    assertEquals(liste2, res);
+
+    res = dao.getAllObjects().getProjekteListe();
+    assertEquals(liste, res);
+
+  }
+
   @Test(expected = IllegalArgumentException.class)
-  public void testSaveAllObjectsEmpty() throws IOException {
+  public void testSaveAllObjectsEmptyMitarbeiter() throws IOException {
     List<Serializable> liste = getTestList(0);
 
     dao.saveAllObjects(liste);
@@ -48,10 +62,26 @@ public class MitarbeiterDaoTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testSaveAllObjectsNull() throws IOException {
+  public void testSaveAllObjectsNullMitarbeiter() throws IOException {
     List<Serializable> liste = null;
 
     dao.saveAllObjects(liste);
+
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testSaveAllObjectsEmptyProjekte() throws IOException {
+    List<Serializable> liste = getTestList(0);
+
+    dao.saveAllObjects(liste, null);
+
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testSaveAllObjectsNullProjekte() throws IOException {
+    List<Serializable> liste = null;
+
+    dao.saveAllObjects(liste, null);
 
   }
 

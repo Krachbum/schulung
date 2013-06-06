@@ -27,10 +27,30 @@ public class Arbeitszeit implements Serializable {
 
   public Arbeitszeit(Date von, Date bis) {
     if (von == null || bis == null) { throw new IllegalArgumentException(); }
-    if (von.after(bis)) { throw new IllegalArgumentException("Von Datum liegt nach dem Bis Datum"); }
+    if ( !bis.after(von)) { throw new IllegalArgumentException("Von Datum liegt nach dem Bis Datum"); }
     this.von = von;
     this.bis = bis;
 
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + bis.hashCode();
+    result = prime * result + von.hashCode();
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    Arbeitszeit other = (Arbeitszeit) obj;
+    if ( !bis.equals(other.bis)) return false;
+    if ( !von.equals(other.von)) return false;
+    return true;
   }
 
 }
