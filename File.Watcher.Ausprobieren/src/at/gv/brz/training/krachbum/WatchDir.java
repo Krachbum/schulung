@@ -32,6 +32,9 @@ import java.nio.file.Paths;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.List;
+
+import at.gv.brz.training.krachbum.listener.FileChangeListener;
 
 /**
  * Example to watch a directory (or tree) for changes to files.
@@ -55,7 +58,7 @@ public class WatchDir {
   /**
    * Process all events for keys queued to the watcher
    */
-  void processEvents() {
+  void processEvents(List<FileChangeListener> lListeners) {
     for (;;) {
 
       // wait for key to be signalled
@@ -63,6 +66,7 @@ public class WatchDir {
       try {
         key = watcher.take();
       } catch (InterruptedException x) {
+        System.out.println("Interrupted Exception");
         return;
       }
 
@@ -85,6 +89,9 @@ public class WatchDir {
 
         // print out event
         if (child.toString().equals("C:\\tmp\\watchfile\\tesi.txt")) {
+          for (FileChangeListener l : lListeners) {
+            l.fileChangedEvent();
+          }
           System.out.format("%s: %s\n", event.kind().name(), child);
         }
 
@@ -93,7 +100,4 @@ public class WatchDir {
     }
   }
 
-  public static void main(String[] args) throws IOException {
-    new WatchDir().processEvents();
-  }
 }
