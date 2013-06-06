@@ -2,6 +2,7 @@ package at.gv.brz.training.krachbum.bom;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -84,6 +85,21 @@ public class ArbeitszeitTest {
   @Test
   public void testEqualsUngleichesVon() {
     assertFalse(new Arbeitszeit(new Date(von.getTime() + 1), bis).equals(new Arbeitszeit(von, bis)));
+  }
+
+  @Test
+  public void testEqualsUngleichNull() {
+    assertFalse(testInstance.equals(null));
+  }
+
+  @Test
+  public void testEqualsGleichesObject() {
+    assertTrue(testInstance.equals(testInstance));
+  }
+
+  @Test
+  public void testEqualsUngleichString() {
+    assertFalse(testInstance.equals("String"));
   }
 
   @Test
