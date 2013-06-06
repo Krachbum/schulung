@@ -37,10 +37,10 @@ public class ProjektTest {
 
     List<Arbeitszeit> liste = new ArrayList<>();
     liste.add(this.testArbeitszeit);
-    this.testInstance.setArbeitszeiten(liste);
+    this.testInstance.addArbeitszeit(this.testArbeitszeit);
 
     this.testInstanceBigger = new Projekt(40, PROJEKTNAME, testManager);
-    this.testInstanceBigger.setArbeitszeiten(liste);
+    this.testInstanceBigger.addArbeitszeit(this.testArbeitszeit);
   }
 
   @Test

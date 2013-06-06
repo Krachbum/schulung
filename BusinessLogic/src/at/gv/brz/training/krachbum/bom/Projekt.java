@@ -1,5 +1,6 @@
 package at.gv.brz.training.krachbum.bom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Projekt {
@@ -8,7 +9,7 @@ public class Projekt {
   private Manager projektleiter;
   private int kontingent;
 
-  private List<Arbeitszeit> arbeitszeiten;
+  private List<Arbeitszeit> arbeitszeiten = new ArrayList<>();
 
   public Projekt(int fixesKontingent, String name, Manager manager) {
     this.kontingent = fixesKontingent;
@@ -37,8 +38,8 @@ public class Projekt {
     return arbeitszeiten;
   }
 
-  public void setArbeitszeiten(List<Arbeitszeit> arbeitszeiten) {
-    this.arbeitszeiten = arbeitszeiten;
+  public void addArbeitszeit(Arbeitszeit arbeitszeit) {
+    this.arbeitszeiten.add(arbeitszeit);
   }
 
   public int getKontingent() {
