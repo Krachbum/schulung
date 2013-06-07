@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import at.gv.brz.training.krachbum.rep.ObjectRepository;
-
 import javax.jws.WebService;
 
 import at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung;
+import at.gv.brz.training.krachbum.rep.ObjectRepository;
 
 @WebService(endpointInterface = "at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung")
 public class Zeitverwaltung implements IZeitverwaltung {
@@ -39,19 +38,9 @@ public class Zeitverwaltung implements IZeitverwaltung {
     boolean mafound = false;
     Projekt mitMirbuchen = null;
 
-    for (Mitarbeiter m : lMitarbeiter) {
-      if (m.equals(ma)) {
-        mafound = true;
-        break;
-      }
-    }
+    mafound = isMitarbeitderValid(ma);
 
-    for (Projekt pr : lProjekte) {
-      if (pr.getName().equals(projektName)) {
-        mitMirbuchen = pr;
-        break;
-      }
-    }
+    mitMirbuchen = findProjektByName(projektName);
 
     if (bis.before(von)) { throw new IllegalArgumentException("Von muss vor Bis liegen"); }
 
@@ -61,6 +50,21 @@ public class Zeitverwaltung implements IZeitverwaltung {
     }
     return false;
 
+  }
+
+  private boolean isMitarbeitderValid(Mitarbeiter ma) {
+    for (Mitarbeiter m : lMitarbeiter) {
+      if (m.equals(ma)) { return true; }
+    }
+    return false;
+  }
+
+  // Methode sollte schlussendlich in Projekt.java liegen
+  private Projekt findProjektByName(String projektName) {
+    for (Projekt pr : lProjekte) {
+      if (pr.getName().equals(projektName)) { return pr; }
+    }
+    return null;
   }
 
   public List<Projekt> getlProjekte() {
