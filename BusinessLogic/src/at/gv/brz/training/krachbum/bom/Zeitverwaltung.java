@@ -9,7 +9,10 @@ import java.util.List;
 import javax.jws.WebService;
 
 import at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung;
+<<<<<<< HEAD
 import at.gv.brz.training.krachbum.listener.FileChangeListener;
+=======
+>>>>>>> branch 'master' of https://github.com/Krachbum/schulung.git
 import at.gv.brz.training.krachbum.rep.ObjectRepository;
 
 @WebService(endpointInterface = "at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung")
@@ -34,24 +37,14 @@ public class Zeitverwaltung implements IZeitverwaltung, FileChangeListener {
   }
 
   @Override
-  public boolean bucheZeit(Mitarbeiter ma, Date von, Date bis, Projekt p) {
+  public boolean bucheZeit(int maNr, Date von, Date bis, String projektName) {
 
     boolean mafound = false;
     Projekt mitMirbuchen = null;
 
-    for (Mitarbeiter m : lMitarbeiter) {
-      if (m.equals(ma)) {
-        mafound = true;
-        break;
-      }
-    }
+    mafound = isMitarbeitderValid(maNr);
 
-    for (Projekt pr : lProjekte) {
-      if (pr.equals(p)) {
-        mitMirbuchen = pr;
-        break;
-      }
-    }
+    mitMirbuchen = findProjektByName(projektName);
 
     if (bis.before(von)) { throw new IllegalArgumentException("Von muss vor Bis liegen"); }
 
@@ -61,6 +54,21 @@ public class Zeitverwaltung implements IZeitverwaltung, FileChangeListener {
     }
     return false;
 
+  }
+
+  private boolean isMitarbeitderValid(int maNr) {
+    for (Mitarbeiter m : lMitarbeiter) {
+      if (m.getMaNr() == maNr) { return true; }
+    }
+    return false;
+  }
+
+  // Methode sollte schlussendlich in Projekt.java liegen
+  private Projekt findProjektByName(String projektName) {
+    for (Projekt pr : lProjekte) {
+      if (pr.getName().equals(projektName)) { return pr; }
+    }
+    return null;
   }
 
   public List<Projekt> getlProjekte() {
