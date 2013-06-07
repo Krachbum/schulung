@@ -9,10 +9,6 @@ import java.util.List;
 import javax.jws.WebService;
 
 import at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung;
-<<<<<<< HEAD
-import at.gv.brz.training.krachbum.listener.FileChangeListener;
-=======
->>>>>>> branch 'master' of https://github.com/Krachbum/schulung.git
 import at.gv.brz.training.krachbum.rep.ObjectRepository;
 
 @WebService(endpointInterface = "at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung")
