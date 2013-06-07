@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import at.gv.brz.training.krachbum.rep.ObjectRepository;
-
 import javax.jws.WebService;
 
 import at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung;
+import at.gv.brz.training.krachbum.listener.FileChangeListener;
+import at.gv.brz.training.krachbum.rep.ObjectRepository;
 
 @WebService(endpointInterface = "at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung")
-public class Zeitverwaltung implements IZeitverwaltung {
+public class Zeitverwaltung implements IZeitverwaltung, FileChangeListener {
   private List<Projekt> lProjekte;
   private List<Mitarbeiter> lMitarbeiter;
 
@@ -77,6 +77,17 @@ public class Zeitverwaltung implements IZeitverwaltung {
 
   public void setlMitarbeiter(List<Mitarbeiter> lMitarbeiter) {
     this.lMitarbeiter = lMitarbeiter;
+  }
+
+  @Override
+  public void fileChangedEvent() {
+    try {
+      System.out.println("Yuhu neue Files");
+      this.reloadAll();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
   }
 
 }

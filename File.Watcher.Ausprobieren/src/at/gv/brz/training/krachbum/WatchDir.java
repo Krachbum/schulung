@@ -88,7 +88,7 @@ public class WatchDir {
         Path child = this.dir.resolve(name);
 
         // print out event
-        if (child.toString().equals("C:\\tmp\\test\\testi.txt")) {
+        if (child.toString().equals("C:\\tmp\\test\\Mitarbeiter.txt")) {
           for (FileChangeListener l : lListeners) {
             l.fileChangedEvent();
           }

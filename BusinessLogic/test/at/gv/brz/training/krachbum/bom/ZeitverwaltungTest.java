@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import at.gv.brz.training.krachbum.WatchService;
 import at.gv.brz.training.krachbum.rep.ObjectRepository;
 
 /**
@@ -39,6 +40,17 @@ public class ZeitverwaltungTest {
   public void testReloadAll() throws IOException, ClassNotFoundException {
     List<Mitarbeiter> mListe = getMitarbeiterTestList(44, true);
     List<Projekt> pListe = getProjektTestList(6);
+
+    prepareTest(mListe, pListe);
+
+    // test
+    verwaltung.reloadAll();
+
+    assertEquals(mListe, verwaltung.getlMitarbeiter());
+    assertEquals(pListe, verwaltung.getlProjekte());
+  }
+
+  private void prepareTest(List<Mitarbeiter> mListe, List<Projekt> pListe) throws IOException {
     List<Object> liste = new ArrayList<>();
     for (Object object : mListe) {
       liste.add(object);
@@ -50,11 +62,26 @@ public class ZeitverwaltungTest {
 
     repository.saveAllObjects(pListe, mListe);
 
-    // test
-    verwaltung.reloadAll();
+  }
 
+  @Test
+  public void testSynchronisation() throws IOException, ClassNotFoundException, InterruptedException {
+    List<Mitarbeiter> mListe = getMitarbeiterTestList(44, true);
+    List<Projekt> pListe = getProjektTestList(6);
+
+    prepareTest(mListe, pListe);
+    // sind nun die alten daten da?
+    verwaltung.reloadAll();
     assertEquals(mListe, verwaltung.getlMitarbeiter());
     assertEquals(pListe, verwaltung.getlProjekte());
+    // start watching
+    WatchService ws = new WatchService();
+    ws.addFileChangeListener(verwaltung);
+
+    ws.prozessEventsInBackground();
+
+    Thread.sleep(5000000);
+
   }
 
   private List<Mitarbeiter> getMitarbeiterTestList(int anzahlElemente, Boolean ohneManager) {

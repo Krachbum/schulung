@@ -47,5 +47,10 @@
   		<artifactId>junit</artifactId>
   		<version>4.11</version>
   	</dependency>
+  	<dependency>
+  		<groupId>file.watcher</groupId>
+  		<artifactId>ausprobieren</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

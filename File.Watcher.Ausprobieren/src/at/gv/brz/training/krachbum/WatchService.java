@@ -15,7 +15,7 @@ public class WatchService {
   }
 
   public void prozessEventsInBackground() {
-    new Thread(new Runnable() {
+    Thread thread = new Thread(new Runnable() {
       @Override
       public void run() {
         try {
@@ -26,7 +26,9 @@ public class WatchService {
         }
 
       }
-    }).start();
+    });
+    thread.start();
+    // thread.setDaemon(true);
   }
 
 }
