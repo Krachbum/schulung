@@ -1,9 +1,14 @@
 package at.gv.brz.training.krachbum.bom;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
-public class Zeitverwaltung {
+import javax.jws.WebService;
+
+import at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung;
+
+@WebService(endpointInterface = "at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung")
+public class Zeitverwaltung implements IZeitverwaltung {
   private List<Projekt> lProjekte;
   private List<Mitarbeiter> lMitarbeiter;
 
@@ -11,7 +16,8 @@ public class Zeitverwaltung {
     //
   }
 
-  public void bucheZeit(Mitarbeiter ma, Date von, Date bis, Projekt project) {
+  @Override
+  public boolean bucheZeit(Mitarbeiter ma, Date von, Date bis, Projekt p) {
 
     boolean mafound = false;
     Projekt mitMirbuchen = null;
@@ -23,9 +29,9 @@ public class Zeitverwaltung {
       }
     }
 
-    for (Projekt p : lProjekte) {
-      if (p.equals(project)) {
-        mitMirbuchen = p;
+    for (Projekt pr : lProjekte) {
+      if (pr.equals(p)) {
+        mitMirbuchen = pr;
         break;
       }
     }
@@ -34,7 +40,9 @@ public class Zeitverwaltung {
 
     if (mafound && mitMirbuchen != null) {
       mitMirbuchen.addArbeitszeit(new Arbeitszeit(von, bis));
+      return true;
     }
+    return false;
 
   }
 
