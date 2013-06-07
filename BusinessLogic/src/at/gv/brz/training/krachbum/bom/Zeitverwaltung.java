@@ -17,7 +17,7 @@ public class Zeitverwaltung implements IZeitverwaltung {
   }
 
   @Override
-  public boolean bucheZeit(Mitarbeiter ma, Date von, Date bis, Projekt p) {
+  public boolean bucheZeit(Mitarbeiter ma, Date von, Date bis, String projektName) {
 
     boolean mafound = false;
     Projekt mitMirbuchen = null;
@@ -30,7 +30,7 @@ public class Zeitverwaltung implements IZeitverwaltung {
     }
 
     for (Projekt pr : lProjekte) {
-      if (pr.equals(p)) {
+      if (pr.getName().equals(projektName)) {
         mitMirbuchen = pr;
         break;
       }
