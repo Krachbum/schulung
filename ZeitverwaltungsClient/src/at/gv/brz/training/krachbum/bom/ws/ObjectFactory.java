@@ -51,14 +51,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Mitarbeiter }
-     * 
-     */
-    public Mitarbeiter createMitarbeiter() {
-        return new Mitarbeiter();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BucheZeit }{@code >}}
      * 
      */

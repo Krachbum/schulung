@@ -33,12 +33,12 @@ public class Zeitverwaltung implements IZeitverwaltung {
   }
 
   @Override
-  public boolean bucheZeit(Mitarbeiter ma, Date von, Date bis, String projektName) {
+  public boolean bucheZeit(int maNr, Date von, Date bis, String projektName) {
 
     boolean mafound = false;
     Projekt mitMirbuchen = null;
 
-    mafound = isMitarbeitderValid(ma);
+    mafound = isMitarbeitderValid(maNr);
 
     mitMirbuchen = findProjektByName(projektName);
 
@@ -52,9 +52,9 @@ public class Zeitverwaltung implements IZeitverwaltung {
 
   }
 
-  private boolean isMitarbeitderValid(Mitarbeiter ma) {
+  private boolean isMitarbeitderValid(int maNr) {
     for (Mitarbeiter m : lMitarbeiter) {
-      if (m.equals(ma)) { return true; }
+      if (m.getMaNr() == maNr) { return true; }
     }
     return false;
   }

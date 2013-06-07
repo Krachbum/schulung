@@ -8,7 +8,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import at.gv.brz.training.krachbum.bom.IZeitverwaltung;
 import at.gv.brz.training.krachbum.bom.ZeitverwaltungService;
-import at.gv.brz.training.krachbum.bom.ws.Mitarbeiter;
 
 public class WSAufruf {
 
@@ -21,16 +20,14 @@ public class WSAufruf {
     ZeitverwaltungService service = new ZeitverwaltungService();
     IZeitverwaltung zeitverwaltung = service.getZeitverwaltungPort();
 
-    Mitarbeiter ma = new Mitarbeiter();
-    ma.setNachname("Huber");
-    ma.setVorname("Franz");
+    int mitarbeiterNr = 3;
 
     int stunde = 9;
     int minute = 0;
     XMLGregorianCalendar xmlVon = DatatypeFactory.newInstance().newXMLGregorianCalendar(2013, 1, 1, stunde, minute, 0, 0, 0);
     XMLGregorianCalendar xmlBis = DatatypeFactory.newInstance().newXMLGregorianCalendar(2013, 1, 1, stunde + 4, minute + 20, 0, 0, 0);
 
-    Boolean gebucht = zeitverwaltung.bucheZeit(ma, xmlVon, xmlBis, "Java-Kurs");
+    Boolean gebucht = zeitverwaltung.bucheZeit(mitarbeiterNr, xmlVon, xmlBis, "Java-Kurs");
     if (gebucht.toString().length() < 5) {
       System.out.println("Wurde erfolgreich gebucht");
     } else {

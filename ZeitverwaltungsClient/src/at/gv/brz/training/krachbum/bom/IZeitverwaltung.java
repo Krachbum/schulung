@@ -10,7 +10,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Action;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
-import at.gv.brz.training.krachbum.bom.ws.Mitarbeiter;
 import at.gv.brz.training.krachbum.bom.ws.ObjectFactory;
 
 
@@ -43,7 +42,7 @@ public interface IZeitverwaltung {
     @Action(input = "http://ws.bom.krachbum.training.brz.gv.at/IZeitverwaltung/bucheZeitRequest", output = "http://ws.bom.krachbum.training.brz.gv.at/IZeitverwaltung/bucheZeitResponse")
     public boolean bucheZeit(
         @WebParam(name = "arg0", targetNamespace = "")
-        Mitarbeiter arg0,
+        int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         XMLGregorianCalendar arg1,
         @WebParam(name = "arg2", targetNamespace = "")

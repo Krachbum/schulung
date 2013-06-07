@@ -18,7 +18,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://ws.bom.krachbum.training.brz.gv.at/}mitarbeiter" minOccurs="0"/>
+ *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -39,7 +39,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class BucheZeit {
 
-    protected Mitarbeiter arg0;
+    protected int arg0;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar arg1;
     @XmlSchemaType(name = "dateTime")
@@ -49,24 +49,16 @@ public class BucheZeit {
     /**
      * Gets the value of the arg0 property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Mitarbeiter }
-     *     
      */
-    public Mitarbeiter getArg0() {
+    public int getArg0() {
         return arg0;
     }
 
     /**
      * Sets the value of the arg0 property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Mitarbeiter }
-     *     
      */
-    public void setArg0(Mitarbeiter value) {
+    public void setArg0(int value) {
         this.arg0 = value;
     }
 
