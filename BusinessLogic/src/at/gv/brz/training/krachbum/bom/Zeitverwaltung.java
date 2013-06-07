@@ -9,6 +9,7 @@ import java.util.List;
 import javax.jws.WebService;
 
 import at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung;
+import at.gv.brz.training.krachbum.listener.FileChangeListener;
 import at.gv.brz.training.krachbum.rep.ObjectRepository;
 
 @WebService(endpointInterface = "at.gv.brz.training.krachbum.bom.ws.IZeitverwaltung")
